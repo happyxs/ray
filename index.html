@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boa noite 🐱</title>
+
+<style>
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:Arial, Helvetica, sans-serif;
+overflow:hidden;
+}
+
+#contador{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:120px;
+color:#b44cff;
+}
+
+#surpresa{
+display:none;
+text-align:center;
+height:100vh;
+width:100vw;
+background:linear-gradient(180deg, black, #2a003f);
+position:fixed;
+top:0;
+left:0;
+z-index:1;
+}
+
+h1{
+margin-top:40px;
+font-size:40px;
+color:#d36bff;
+text-shadow:0 0 20px #a020f0;
+padding:20px;
+}
+
+#gatinho{
+width:180px;
+margin-top:80px;
+animation:pulo 1s ease;
+}
+
+@keyframes pulo{
+
+0%{transform:translateY(-500px);}
+60%{transform:translateY(40px);}
+80%{transform:translateY(-20px);}
+100%{transform:translateY(0);}
+
+}
+
+.emoji{
+
+position:fixed;
+top:-50px;
+font-size:30px;
+animation:cair linear forwards;
+opacity:0.5;
+pointer-events:none;
+z-index:9999;
+
+}
+
+@keyframes cair{
+
+0%{
+transform:translateY(-50px);
+}
+
+100%{
+transform:translateY(110vh);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="contador">1</div>
+
+<div id="surpresa">
+
+<img id="gatinho" src="img/cat.jpg">
+
+<h1>BOA NOITE, GATONA!<br>DORME BEM FIAKK 🐱🌙</h1>
+
+</div>
+
+<script>
+
+let numero=1
+let contador=document.getElementById("contador")
+
+let intervalo=setInterval(()=>{
+
+numero++
+contador.innerText=numero
+
+if(numero==5){
+
+clearInterval(intervalo)
+
+setTimeout(()=>{
+
+contador.style.display="none"
+document.getElementById("surpresa").style.display="block"
+chuvaEmoji()
+
+},600)
+
+}
+
+},800)
+
+
+
+function chuvaEmoji(){
+
+let emojis=["🐱","🐈","🌙","💤","😴","✨","💜","🌌"]
+
+for(let i=0;i<70;i++){
+
+let emoji=document.createElement("div")
+
+emoji.className="emoji"
+
+emoji.innerText=emojis[Math.floor(Math.random()*emojis.length)]
+
+emoji.style.left=Math.random()*100+"vw"
+
+emoji.style.fontSize=(20+Math.random()*25)+"px"
+
+emoji.style.animationDuration=(3+Math.random()*4)+"s"
+
+emoji.style.opacity=(0.3+Math.random()*0.4)
+
+document.body.appendChild(emoji)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
